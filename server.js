@@ -8,6 +8,13 @@ app.post('/', (req, res) => {
 	const email = req.body.email
 	const amount = req.body.amount
 
+	if (amount <= 1) {
+		return_info = {}
+		return_info.error = true
+		return_info.message = 'the amount should be greater than 1'
+		res.send(return_info)
+	}
+
 	res.send({ amount: amount, email: email })
 })
 app.listen(3000, () => {
